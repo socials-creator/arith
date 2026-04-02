@@ -3,63 +3,55 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- ✅ FIX 1: Proper viewport with safe areas -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<!-- ✅ FIX 2: Dynamic status bar color -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Arithmetic Pro">
+
 <meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
+
+<link rel="manifest" href="manifest.json">
 
 <title>Arithmetic Pro</title>
 
 <style>
+html, body { margin:0; height:100%; }
 
-/* ✅ FIX 3: Apply background to html ALSO (prevents white bottom gap) */
-html {
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
   background: linear-gradient(135deg,#eef1f5,#dfe6ee);
 }
 
-/* ✅ FIX 4: Safe area + full height handling */
-body {
-  margin:0;
-  font-family:-apple-system;
-  background: linear-gradient(135deg,#eef1f5,#dfe6ee);
-  display:flex;
+@media (prefers-color-scheme: dark) {
+  body::before {
+    background: linear-gradient(135deg,#0b0f17,#111827);
+  }
+}
 
-  /* safe area padding */
+body {
+  font-family:-apple-system;
+  display:flex;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
-
-  /* prevent white bounce flash */
-  min-height: 100vh;
-  overscroll-behavior: none;
+  min-height:100dvh;
+  overscroll-behavior:none;
 }
 
 #main { width:90%; padding:16px; }
 
 #historyPanel {
   width:10%;
-  height:100vh;
+  height:100dvh;
   overflow-y:auto;
   padding:6px;
   background: rgba(255,255,255,0.25);
   backdrop-filter: blur(10px);
   border-left:1px solid rgba(0,0,0,0.08);
-}
-
-.historyTitle {
-  text-align:center;
-  font-size:10px;
-  margin-bottom:8px;
-  opacity:0.7;
-}
-
-.histItem {
-  display:flex;
-  justify-content:space-between;
-  padding:4px 2px;
-  font-size:10px;
-  border-bottom:1px solid rgba(0,0,0,0.05);
 }
 
 .card {
@@ -68,13 +60,6 @@ body {
   border-radius:18px;
   padding:16px;
   margin-bottom:14px;
-}
-
-input, select {
-  padding:8px;
-  border-radius:10px;
-  border:1px solid rgba(0,0,0,0.15);
-  background: transparent;
 }
 
 button {
@@ -104,7 +89,6 @@ button {
   text-align:center;
   border:2px solid #000;
   border-radius:10px;
-  outline:none;
   background:transparent;
 }
 
@@ -125,62 +109,15 @@ button {
   padding:22px;
   border-radius:18px;
   width:340px;
-  text-align:left;
 }
 
-.opHeading {
-  font-size:22px;
-  text-align:center;
-  letter-spacing:10px;
-  opacity:0.7;
-}
-
-#editBtn {
-  background:none;
-  color:#007aff;
-  padding:0;
-  margin-top:10px;
-  font-size:14px;
-  text-decoration:underline;
-  border:none;
-  cursor:pointer;
-}
-
-/* 🌙 DARK MODE FIXES */
 @media (prefers-color-scheme: dark) {
-
-  /* match html background too */
-  html {
-    background: linear-gradient(135deg,#0b0f17,#111827);
-  }
-
-  body {
-    background: linear-gradient(135deg,#0b0f17,#111827);
-    color:#f5f5f5;
-  }
-
-  #historyPanel {
-    background: rgba(20,20,20,0.35);
-    border-left:1px solid rgba(255,255,255,0.08);
-  }
-
+  body { color:#f5f5f5; }
+  #historyPanel { background: rgba(20,20,20,0.35); border-left:1px solid rgba(255,255,255,0.08); }
   .card { background: rgba(30,30,30,0.55); color:#fff; }
-
-  input, select { border:1px solid rgba(255,255,255,0.25); color:#fff; }
-
   #answer { border:2px solid #fff; color:#fff; }
-
-  #question { color:#fff; }
-
-  .histItem { border-bottom:1px solid rgba(255,255,255,0.08); color:#ddd; }
-
-  .historyTitle { color:#aaa; }
-
   #box { background:#1c1c1e; color:#fff; }
-
-  #overlay { background:rgba(0,0,0,0.7); }
 }
-
 </style>
 </head>
 
@@ -189,23 +126,6 @@ button {
 <div id="main">
 
 <h2>Arithmetic Pro</h2>
-
-<div class="card">
-  <div class="opHeading">+ − × ÷</div>
-  <button id="editBtn">Modify Game Settings</button>
-</div>
-
-<div class="card">
-<label>Choose duration </label>
-<select id="duration">
-<option value="30">30s</option>
-<option value="60">60s</option>
-<option value="300">5m</option>
-<option value="600">10m</option>
-<option value="900">15m</option>
-<option value="1200">20m</option>
-</select>
-</div>
 
 <button id="startBtn">Start</button>
 
@@ -217,53 +137,17 @@ button {
 
 </div>
 
-<div id="historyPanel">
-<div class="historyTitle">HISTORY</div>
-<div id="historyList"></div>
-</div>
+<div id="historyPanel"></div>
 
 <div id="overlay">
 <div id="box">
-
-<div id="editContent">
-<h3>Customize</h3>
-
-<label><input type="checkbox" id="add" checked> Add</label><br>
-<label><input type="checkbox" id="sub" checked> Sub</label><br>
-<label><input type="checkbox" id="mul" checked> Mul</label><br>
-<label><input type="checkbox" id="div" checked> Div</label>
-
-<br><br>
-
-Add/Sub Range:
-<input id="as1" type="number" value="2">
-<input id="as2" type="number" value="100">
-
-<br><br>
-
-Mul/Div Range:
-<input id="md1" type="number" value="2">
-<input id="md2" type="number" value="20">
-
-<br><br>
-
-<button onclick="closeEdit()">Done</button>
-</div>
-
-<div id="gameOverContent" style="display:none;">
-<h2 style="text-align:center;">Game Over</h2>
+<h2>Game Over</h2>
 <div id="final"></div>
-<div style="text-align:center; margin-top:12px;">
 <button onclick="reset()">Play Again</button>
 </div>
 </div>
 
-</div>
-</div>
-
 <script>
-// (UNCHANGED JS — EXACTLY SAME)
-
 const startBtn=document.getElementById("startBtn");
 const questionEl=document.getElementById("question");
 const answerEl=document.getElementById("answer");
@@ -272,41 +156,15 @@ const gameEl=document.getElementById("game");
 const overlay=document.getElementById("overlay");
 const finalEl=document.getElementById("final");
 
-const editBtn=document.getElementById("editBtn");
-const editContent=document.getElementById("editContent");
-const gameOverContent=document.getElementById("gameOverContent");
-
 let ans=0;
 let questionStart=0;
-
 let correct=0;
 let totalQuestions=0;
 
-let speedStats = { fast:0,quick:0,normal:0,slow:0 };
-
+let speedStats = { fast:0, quick:0, normal:0, slow:0 };
 let history=JSON.parse(localStorage.getItem("h")||"[]");
 
-editBtn.onclick=function(){
-  overlay.style.display="flex";
-  editContent.style.display="block";
-  gameOverContent.style.display="none";
-};
-
-function closeEdit(){
-  overlay.style.display="none";
-}
-
-function getDifficulty(){
-  let r=Math.random();
-  if(r<0.15) return "easy";
-  if(r<0.40) return "medium";
-  if(r<0.70) return "hard";
-  return "vhard";
-}
-
-function rand(a,b){
-  return Math.floor(Math.random()*(b-a+1))+a;
-}
+function rand(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
 
 function getScore(time){
   if(time < 3) return 8;
@@ -316,43 +174,11 @@ function getScore(time){
 }
 
 function generate(){
-
   totalQuestions++;
-
-  const ops=[];
-  if(add.checked) ops.push("+");
-  if(sub.checked) ops.push("-");
-  if(mul.checked) ops.push("*");
-  if(div.checked) ops.push("/");
-
-  const op=ops[Math.floor(Math.random()*ops.length)];
-  const diff=getDifficulty();
-
-  let as1v=+as1.value, as2v=+as2.value;
-  let md1v=+md1.value, md2v=+md2.value;
-
-  function scaled(min,max,f){
-    let range=Math.floor((max-min)*f);
-    return rand(min,min+Math.max(1,range));
-  }
-
-  let scale={easy:0.5,medium:0.75,hard:1,vhard:1}[diff];
-
-  let a,b;
-
-  if(op==="+"||op==="-"){
-    a=scaled(as1v,as2v,scale);
-    b=scaled(as1v,as2v,scale);
-  } else {
-    a=scaled(md1v,md2v,scale);
-    b=scaled(md1v,md2v,scale);
-  }
-
-  if(op==="+"){ans=a+b;questionEl.innerText=`${a}+${b}`;}
-  if(op==="-"){if(a<b)[a,b]=[b,a];ans=a-b;questionEl.innerText=`${a}-${b}`;}
-  if(op==="*"){ans=a*b;questionEl.innerText=`${a}×${b}`;}
-  if(op==="/"){ans=a;questionEl.innerText=`${a*b}÷${b}`;}
-
+  let a=rand(1,20);
+  let b=rand(1,20);
+  ans=a+b;
+  questionEl.innerText=`${a}+${b}`;
   questionStart=performance.now();
 }
 
@@ -370,12 +196,9 @@ startBtn.onclick=function(){
   totalQuestions=0;
   speedStats={fast:0,quick:0,normal:0,slow:0};
 
-  let dur=+duration.value;
-  endTime=Date.now()+dur*1000;
+  endTime=Date.now()+60000;
 
   gameEl.style.display="block";
-  overlay.style.display="none";
-
   generate();
   loop();
 };
@@ -386,7 +209,6 @@ answerEl.addEventListener("input", e => {
   let v=+e.target.value;
 
   if(v===ans){
-
     const time = (performance.now() - questionStart) / 1000;
 
     correct += getScore(time);
@@ -405,40 +227,29 @@ function finish(){
   gameEl.style.display="none";
   overlay.style.display="flex";
 
-  editContent.style.display="none";
-  gameOverContent.style.display="block";
-
   finalEl.innerHTML=`
   <div><b>Score:</b> ${correct}</div>
   <div><b>Questions:</b> ${totalQuestions}</div>
-  <div><b>Duration:</b> ${duration.value}s</div>
   <hr>
-  <b>Speed: Questions-Answered</b><br>
-  <div>Fast (&lt;3s): ${speedStats.fast}</div>
-  <div>Quick (3–4.99s): ${speedStats.quick}</div>
-  <div>Normal (5–7s): ${speedStats.normal}</div>
-  <div>Slow (&gt;7s): ${speedStats.slow}</div>
+  <div>Fast: ${speedStats.fast}</div>
+  <div>Quick: ${speedStats.quick}</div>
+  <div>Normal: ${speedStats.normal}</div>
+  <div>Slow: ${speedStats.slow}</div>
   `;
 
-  history.push({label:duration.value+"s",score:correct});
+  history.push({score:correct});
   localStorage.setItem("h",JSON.stringify(history));
-
-  renderHistory();
 }
 
-function renderHistory(){
-  document.getElementById("historyList").innerHTML=
-    history.slice(-10).reverse()
-    .map(h=>`<div class="histItem"><span>${h.label}</span><span>${h.score}</span></div>`)
-    .join("");
+function reset(){ overlay.style.display="none"; }
+
+</script>
+
+<!-- PWA -->
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
 }
-
-function reset(){
-  overlay.style.display="none";
-}
-
-renderHistory();
-
 </script>
 
 </body>
