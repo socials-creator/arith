@@ -3,10 +3,8 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- ✅ iPhone full screen fix -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<!-- ✅ PWA / iOS -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Arithmetic Pro">
@@ -20,7 +18,7 @@
 
 <style>
 
-/* ✅ FIX white areas (DO NOT CHANGE YOUR UI) */
+/* iOS white patch FIX */
 html, body { margin:0; height:100%; }
 
 body::before {
@@ -37,8 +35,7 @@ body::before {
   }
 }
 
-/* ===== YOUR ORIGINAL CODE BELOW (UNCHANGED) ===== */
-
+/* ORIGINAL CSS (unchanged) */
 body {
   font-family:-apple-system;
   display:flex;
@@ -188,9 +185,9 @@ button {
 
 <body>
 
-<!-- ===== YOUR HTML EXACTLY SAME ===== -->
-
+<!-- ORIGINAL HTML -->
 <div id="main">
+
 <h2>Arithmetic Pro</h2>
 
 <div class="card">
@@ -217,6 +214,7 @@ button {
 <div id="question"></div>
 <input id="answer" type="tel" inputmode="numeric">
 </div>
+
 </div>
 
 <div id="historyPanel">
@@ -226,6 +224,7 @@ button {
 
 <div id="overlay">
 <div id="box">
+
 <div id="editContent">
 <h3>Customize</h3>
 
@@ -258,15 +257,191 @@ Mul/Div Range:
 <button onclick="reset()">Play Again</button>
 </div>
 </div>
+
 </div>
 </div>
 
-<!-- ===== YOUR JS EXACTLY SAME ===== -->
 <script>
-/* (UNCHANGED — your full JS here exactly as you gave) */
+
+/* FULL ORIGINAL JS RESTORED */
+const startBtn=document.getElementById("startBtn");
+const questionEl=document.getElementById("question");
+const answerEl=document.getElementById("answer");
+const timerEl=document.getElementById("timer");
+const gameEl=document.getElementById("game");
+const overlay=document.getElementById("overlay");
+const finalEl=document.getElementById("final");
+
+const editBtn=document.getElementById("editBtn");
+const editContent=document.getElementById("editContent");
+const gameOverContent=document.getElementById("gameOverContent");
+
+let ans=0;
+let questionStart=0;
+
+let correct=0;
+let totalQuestions=0;
+
+let speedStats = { fast:0, quick:0, normal:0, slow:0 };
+
+let history=JSON.parse(localStorage.getItem("h")||"[]");
+
+editBtn.onclick=function(){
+  overlay.style.display="flex";
+  editContent.style.display="block";
+  gameOverContent.style.display="none";
+};
+
+function closeEdit(){
+  overlay.style.display="none";
+}
+
+function getDifficulty(){
+  let r=Math.random();
+  if(r<0.15) return "easy";
+  if(r<0.40) return "medium";
+  if(r<0.70) return "hard";
+  return "vhard";
+}
+
+function rand(a,b){
+  return Math.floor(Math.random()*(b-a+1))+a;
+}
+
+function getScore(time){
+  if(time < 3) return 8;
+  if(time < 5) return 4;
+  if(time <= 7) return 2;
+  return 1;
+}
+
+function generate(){
+
+  totalQuestions++;
+
+  const ops=[];
+  if(add.checked) ops.push("+");
+  if(sub.checked) ops.push("-");
+  if(mul.checked) ops.push("*");
+  if(div.checked) ops.push("/");
+
+  const op=ops[Math.floor(Math.random()*ops.length)];
+  const diff=getDifficulty();
+
+  let as1v=+as1.value, as2v=+as2.value;
+  let md1v=+md1.value, md2v=+md2.value;
+
+  function scaled(min,max,f){
+    let range=Math.floor((max-min)*f);
+    return rand(min,min+Math.max(1,range));
+  }
+
+  let scale={easy:0.5,medium:0.75,hard:1,vhard:1}[diff];
+
+  let a,b;
+
+  if(op==="+"||op==="-"){
+    a=scaled(as1v,as2v,scale);
+    b=scaled(as1v,as2v,scale);
+  } else {
+    a=scaled(md1v,md2v,scale);
+    b=scaled(md1v,md2v,scale);
+  }
+
+  if(op==="+"){ans=a+b;questionEl.innerText=`${a}+${b}`;}
+  if(op==="-"){if(a<b)[a,b]=[b,a];ans=a-b;questionEl.innerText=`${a}-${b}`;}
+  if(op==="*"){ans=a*b;questionEl.innerText=`${a}×${b}`;}
+  if(op==="/"){ans=a;questionEl.innerText=`${a*b}÷${b}`;}
+
+  questionStart=performance.now();
+}
+
+let endTime=0;
+
+function loop(){
+  let t=Math.max(0,Math.floor((endTime-Date.now())/1000));
+  timerEl.innerText="⏱ "+t;
+  if(t<=0){finish();return;}
+  requestAnimationFrame(loop);
+}
+
+startBtn.onclick=function(){
+  correct=0;
+  totalQuestions=0;
+  speedStats={fast:0,quick:0,normal:0,slow:0};
+
+  let dur=+duration.value;
+  endTime=Date.now()+dur*1000;
+
+  gameEl.style.display="block";
+  overlay.style.display="none";
+
+  generate();
+  loop();
+};
+
+answerEl.addEventListener("input", e => {
+  if(e.target.value==="") return;
+
+  let v=+e.target.value;
+
+  if(v===ans){
+
+    const time = (performance.now() - questionStart) / 1000;
+
+    correct += getScore(time);
+
+    if(time < 3) speedStats.fast++;
+    else if(time < 5) speedStats.quick++;
+    else if(time <= 7) speedStats.normal++;
+    else speedStats.slow++;
+
+    e.target.value="";
+    generate();
+  }
+});
+
+function finish(){
+  gameEl.style.display="none";
+  overlay.style.display="flex";
+
+  editContent.style.display="none";
+  gameOverContent.style.display="block";
+
+  finalEl.innerHTML=`
+  <div><b>Score:</b> ${correct}</div>
+  <div><b>Questions:</b> ${totalQuestions}</div>
+  <div><b>Duration:</b> ${duration.value}s</div>
+  <hr>
+  <b>Speed: Questions-Answered</b><br>
+  <div>Fast (&lt;3s): ${speedStats.fast}</div>
+  <div>Quick (3–4.99s): ${speedStats.quick}</div>
+  <div>Normal (5–7s): ${speedStats.normal}</div>
+  <div>Slow (&gt;7s): ${speedStats.slow}</div>
+  `;
+
+  history.push({label:duration.value+"s",score:correct});
+  localStorage.setItem("h",JSON.stringify(history));
+
+  renderHistory();
+}
+
+function renderHistory(){
+  document.getElementById("historyList").innerHTML=
+    history.slice(-10).reverse()
+    .map(h=>`<div class="histItem"><span>${h.label}</span><span>${h.score}</span></div>`)
+    .join("");
+}
+
+function reset(){
+  overlay.style.display="none";
+}
+
+renderHistory();
+
 </script>
 
-<!-- ✅ PWA -->
+<!-- PWA -->
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js');
