@@ -10,24 +10,26 @@
 <meta name="apple-mobile-web-app-title" content="Arithmetic Pro">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.png">
-<title>Arithmetic Pro</title>
+<title>Arithmetic Pro v12.1</title>
 <style>
 :root{color-scheme:light dark;--bg:#eef1f5;--surface:#ffffffd9;--surface-solid:#fff;--ink:#162132;--muted:#667487;--line:#d7dfe9;--accent:#0878ed;--accent-ink:#fff;--green:#158458;--red:#cb4141;--shadow:0 10px 36px #23354b0d}
 @media(prefers-color-scheme:dark){:root{--bg:#0b0f17;--surface:#1b2330e8;--surface-solid:#1b2330;--ink:#f3f6fa;--muted:#a2aec0;--line:#354153;--accent:#64a8ff;--accent-ink:#081625;--green:#5cdb9b;--red:#ff8585;--shadow:0 10px 36px #0003}}
 *{box-sizing:border-box}html{height:100%;background:var(--bg)}body{margin:0;min-height:100dvh;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);background:radial-gradient(ellipse at 20% 0%,#b6d4f526,transparent 60%),var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overscroll-behavior:none}button,input,select{font:inherit}button{cursor:pointer;touch-action:manipulation}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:3px}button:disabled{opacity:.45;cursor:not-allowed}.app{display:grid;grid-template-columns:minmax(0,1fr) 220px;min-height:100dvh;max-width:1100px;margin:auto}.main{width:100%;max-width:680px;margin:0 auto;padding:clamp(16px,4vw,34px);min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}.brand{font-size:clamp(24px,4vw,31px);letter-spacing:-1.1px;margin:0}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:750}.top-actions{display:flex;gap:8px;align-items:center}.icon-btn{border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);padding:10px 13px;min-height:44px;min-width:44px}.panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow);margin-bottom:16px}.operators{text-align:center;letter-spacing:10px;color:var(--accent);font-size:26px;font-weight:650;margin:2px 0 12px}.subtitle{text-align:center;color:var(--muted);margin:0 0 20px;font-size:14px}.field-label{display:block;font-size:13px;color:var(--muted);font-weight:650;margin-bottom:8px}.duration{width:100%;min-height:50px;padding:12px 14px;border:1px solid var(--line);border-radius:13px;color:var(--ink);background:var(--surface-solid)}.primary{border:0;border-radius:15px;background:var(--accent);color:var(--accent-ink);font-size:17px;font-weight:750;padding:15px 20px;min-height:52px;width:100%;transition:transform .12s,filter .12s}.primary:active,.icon-btn:active,.secondary:active{transform:scale(.985)}.secondary{background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 16px;min-height:46px;font-weight:650}.game{max-width:570px;margin:auto}.game-header{display:flex;align-items:center;justify-content:space-between;gap:12px}.stat{text-align:center}.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.4px}.stat-number{font-size:25px;font-weight:800;font-variant-numeric:tabular-nums}.timer-wrap{position:relative;width:94px;height:94px;flex-shrink:0}.timer-svg{width:94px;height:94px;transform:rotate(-90deg)}.timer-track{fill:none;stroke:var(--line);stroke-width:6}.timer-progress{fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:round;stroke-dasharray:251.327;stroke-dashoffset:0;transition:stroke .2s}.timer-wrap.urgent .timer-progress{stroke:var(--red)}.timer-center{position:absolute;inset:0;display:grid;place-content:center;text-align:center}.timer-number{font-weight:800;font-size:24px;font-variant-numeric:tabular-nums}.timer-unit{font-size:10px;color:var(--muted)}.question-card{margin-top:22px;padding:34px 18px 25px;text-align:center}.question{font-size:clamp(42px,9vw,72px);font-weight:760;letter-spacing:-2px;min-height:88px;display:flex;align-items:center;justify-content:center;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.question.enter{animation:question-in .13s ease-out}.answer{display:block;width:100%;max-width:330px;margin:16px auto 0;text-align:center;font-size:clamp(32px,7vw,44px);font-weight:700;padding:13px;border:2px solid var(--ink);border-radius:15px;background:transparent;color:var(--ink);outline:none;font-variant-numeric:tabular-nums}.answer:focus{border-color:var(--accent)}.answer.correct{animation:correct-flash .19s ease-out}.hint{text-align:center;color:var(--muted);font-size:12px;margin:12px 0 0}.game-bottom{display:flex;justify-content:center;margin-top:18px}.history{border-left:1px solid var(--line);padding:24px 13px;background:var(--surface);min-width:0}.history-heading{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:12px;font-weight:800;letter-spacing:1px;color:var(--muted);margin-bottom:16px}.recent-heading{margin-top:25px;padding-top:18px;border-top:1px solid var(--line)}.best-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 0;font-size:13px;font-variant-numeric:tabular-nums}.best-item strong{font-size:15px;color:var(--ink)}.best-item .none{color:var(--muted);font-weight:500}.hist-item{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line);padding:12px 0;font-size:13px;font-variant-numeric:tabular-nums}.hist-item strong{color:var(--ink)}.empty{font-size:13px;line-height:1.6;color:var(--muted)}.history-close,.history-open{display:none}.backdrop{position:fixed;inset:0;background:#0009;z-index:10;display:flex;align-items:flex-end;justify-content:center;padding:20px 12px max(20px,env(safe-area-inset-bottom))}.sheet{width:min(100%,480px);max-height:min(88dvh,800px);overflow:auto;background:var(--surface-solid);border:1px solid var(--line);border-radius:25px;padding:24px;box-shadow:0 24px 80px #0004}.sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.sheet h2{margin:0 0 12px;font-size:24px;letter-spacing:-.5px}.sheet p{color:var(--muted);font-size:13px}.options{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}.check{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:12px;padding:12px;min-height:48px}.check input{width:19px;height:19px;accent-color:var(--accent)}.ranges{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ranges input{width:100%;min-width:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:12px;border-radius:12px;min-height:48px}.settings-actions{display:flex;gap:10px;margin-top:18px}.settings-actions>*{flex:1}.error{color:var(--red);font-size:13px;min-height:18px}.score-hero{text-align:center;margin:12px 0 20px}.score-hero .score{font-size:clamp(60px,14vw,86px);font-weight:850;letter-spacing:-4px;font-variant-numeric:tabular-nums;line-height:1.15}.score-hero .score-caption{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:2px}.best{color:var(--green);font-weight:750;margin-top:7px}.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.result-tile{border:1px solid var(--line);border-radius:14px;padding:12px}.result-tile span{display:block;color:var(--muted);font-size:12px}.result-tile strong{display:block;font-size:20px;margin-top:5px}.speed-list{display:grid;grid-template-columns:1fr auto;gap:10px;font-size:13px;margin:16px 0 24px}.speed-list span:nth-child(2n){font-weight:750;font-variant-numeric:tabular-nums}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.result-actions .primary{grid-column:1/-1}.celebrate{animation:celebrate .5s ease-out}.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}[hidden]{display:none!important}
 @keyframes question-in{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}@keyframes correct-flash{0%{border-color:var(--green);box-shadow:0 0 0 5px #29b97626}100%{border-color:var(--accent);box-shadow:none}}@keyframes celebrate{0%{transform:scale(.94)}60%{transform:scale(1.05)}100%{transform:scale(1)}}
+.offline-status{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--muted);padding:5px 10px;margin-top:8px;font-size:11px;font-weight:650;line-height:1.25;min-height:30px;max-width:100%;text-align:left}.offline-status .offline-dot{width:7px;height:7px;border-radius:100%;background:#9ca3af;flex-shrink:0}.offline-status[data-state="ready"]{color:var(--green)}.offline-status[data-state="ready"] .offline-dot{background:var(--green)}.offline-status[data-state="missing"]{color:var(--red)}.offline-status[data-state="missing"] .offline-dot{background:var(--red)}.offline-status[data-state="checking"] .offline-dot{animation:offline-pulse 1s ease-in-out infinite alternate}@keyframes offline-pulse{to{opacity:.25}}@media(prefers-reduced-motion:reduce){.offline-status[data-state="checking"] .offline-dot{animation:none}}
 @media(max-width:740px){.app{display:block}.main{padding:18px 16px}.history{position:fixed;z-index:12;right:0;top:0;bottom:0;width:min(82vw,320px);overflow:auto;transform:translateX(105%);transition:transform .2s ease;box-shadow:-16px 0 60px #0003;padding:calc(22px + env(safe-area-inset-top)) 20px 24px}.history.open{transform:translateX(0)}.history-close,.history-open{display:inline-flex}.history-close{border:0;background:transparent;color:var(--ink);padding:10px}.topbar{margin-bottom:18px}.question-card{margin-top:16px}.panel{padding:18px}.question{min-height:78px}.game-bottom{margin-top:14px}}
 @media(min-width:741px){.history-close{display:none!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.readme-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 13px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font-size:13px;font-weight:700;text-decoration:none}.readme-link:hover{border-color:var(--accent)}
 </style>
 </head>
 <body>
 <div class="app">
 <main class="main">
-<header class="topbar"><div><div class="eyebrow">Train your mind</div><h1 class="brand">Arithmetic Pro</h1></div><div class="top-actions"><button id="historyOpen" class="icon-btn history-open" type="button" aria-label="Open history">History</button><button id="settingsOpen" class="icon-btn" type="button" aria-label="Game settings">⚙</button></div></header>
+<header class="topbar"><div><div class="eyebrow">Train your mind</div><h1 class="brand">Arithmetic Pro</h1><button id="offlineStatus" class="offline-status" type="button" aria-live="polite" aria-label="Check offline readiness" title="Check whether all game and guide files are available offline"><span class="offline-dot" aria-hidden="true"></span><span id="offlineText">Checking offline…</span></button></div><div class="top-actions"><a class="readme-link" href="./readme.html" aria-label="Read the Arithmetic Pro guide">Guide</a><button id="historyOpen" class="icon-btn history-open" type="button" aria-label="Open history">History</button><button id="settingsOpen" class="icon-btn" type="button" aria-label="Game settings">⚙</button></div></header>
 <section id="home">
 <div class="panel"><div class="operators" aria-hidden="true">+ − × ÷</div><p class="subtitle">Fast questions. Sharp thinking. Beat your best.</p><label class="field-label" for="duration">Game duration</label><select id="duration" class="duration"><option value="30">30 seconds</option><option value="60">1 minute</option><option value="120">2 minutes</option><option value="300">5 minutes</option><option value="600">10 minutes</option><option value="900">15 minutes</option><option value="1200">20 minutes</option></select></div>
-<button id="startBtn" class="primary" type="button">Start game</button>
+<button id="startBtn" class="primary" type="button">Start game</button><p class="subtitle" style="margin-top:16px">v12.1 · <a href="./readme.html" style="color:var(--accent)">How to play &amp; scoring</a></p>
 </section>
 <section id="game" class="game" hidden aria-label="Arithmetic game">
 <div class="game-header"><div class="stat"><div class="stat-label">Score</div><div class="stat-number" id="liveScore">0</div></div><div class="timer-wrap" id="timerWrap"><svg class="timer-svg" viewBox="0 0 100 100" aria-hidden="true"><circle class="timer-track" cx="50" cy="50" r="40"/><circle class="timer-progress" id="timerProgress" cx="50" cy="50" r="40"/></svg><div class="timer-center"><div id="timer" class="timer-number">30</div><div class="timer-unit">SECONDS</div></div></div><div class="stat"><div class="stat-label">Solved</div><div class="stat-number" id="liveSolved">0</div></div></div>
@@ -93,8 +95,27 @@ function closeHistory(){$('historyPanel').classList.remove('open');show('history
 $('historyOpen').addEventListener('click',openHistory);$('historyClose').addEventListener('click',closeHistory);$('historyBackdrop').addEventListener('click',closeHistory);
 function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a}
 function shuffle(items){for(let i=items.length-1;i>0;i--){const j=rand(0,i);[items[i],items[j]]=[items[j],items[i]]}return items}
-// Shuffled decks maintain a fair distribution without a predictable fixed order.
-let operationDeck=[],difficultyDeck=[],lastExpression='',recentExpressions=[];
+// v12.1: persistent anti-repeat memory across games, including refreshes.
+// Each key identifies the mathematical problem; operand reversal does not create
+// a new question for addition or multiplication. Store only the latest 600 keys.
+const QUESTION_MEMORY_KEY='arithmetic-recent-questions-v12.1';
+const QUESTION_MEMORY_LIMIT=600;
+const CANDIDATES_PER_QUESTION=72;
+let storedQuestions=readStore(QUESTION_MEMORY_KEY,[]);
+if(!Array.isArray(storedQuestions))storedQuestions=[];
+storedQuestions=storedQuestions.filter(x=>typeof x==='string'&&x.length<=64).slice(-QUESTION_MEMORY_LIMIT);
+let recentQuestions=storedQuestions;
+let recentQuestionSet=new Set(recentQuestions);
+// Keep an in-memory set in sync with persisted order, with no reset on Restart.
+function rememberQuestion(key){
+  const existing=recentQuestions.indexOf(key);
+  if(existing!==-1)recentQuestions.splice(existing,1);
+  recentQuestions.push(key);
+  if(recentQuestions.length>QUESTION_MEMORY_LIMIT)recentQuestions.shift();
+  recentQuestionSet=new Set(recentQuestions);
+  writeStore(QUESTION_MEMORY_KEY,recentQuestions);
+}
+let operationDeck=[],difficultyDeck=[];
 function pickOperation(){
  if(!operationDeck.length){const enabled=[['add','+'],['sub','−'],['mul','×'],['div','÷']].filter(([key])=>settings[key]).map(([,op])=>op);operationDeck=shuffle(enabled)}
  return operationDeck.pop();
@@ -103,8 +124,6 @@ function pickDifficulty(){
  if(!difficultyDeck.length)difficultyDeck=shuffle(['easy','easy','easy','medium','medium','medium','medium','medium','hard','hard','hard','hard','hard','hard','vhard','vhard','vhard','vhard','vhard','vhard']);
  return difficultyDeck.pop();
 }
-// For customizable ranges, quartiles give distinct increasing operand sizes.
-// If a range is too narrow to distinguish four levels, its tiers overlap naturally.
 function tierNumber(min,max,tier){
  const span=max-min;
  const bands={easy:[0,.25],medium:[.25,.55],hard:[.55,.8],vhard:[.8,1]};
@@ -115,22 +134,37 @@ function tierNumber(min,max,tier){
 function makeProblem(op,tier){
  const small=op==='+'||op==='−';const min=small?settings.as1:settings.md1,max=small?settings.as2:settings.md2;
  let a=tierNumber(min,max,tier),b=tierNumber(min,max,tier);
- let value,expression;
- if(op==='+'){value=a+b;expression=`${a} + ${b}`}
- else if(op==='−'){if(a<b)[a,b]=[b,a];value=a-b;expression=`${a} − ${b}`}
- else if(op==='×'){value=a*b;expression=`${a} × ${b}`}
- else{ // Exact integer division, with both operands derived from the configured range.
-  if(b===1&&max>=2)b=2;
-  value=a;expression=`${a*b} ÷ ${b}`;
+ let value,expression,key;
+ if(op==='+'){value=a+b;expression=`${a} + ${b}`;key=`add:${Math.min(a,b)}:${Math.max(a,b)}`}
+ else if(op==='−'){if(a<b)[a,b]=[b,a];value=a-b;expression=`${a} − ${b}`;key=`sub:${a}:${b}`}
+ else if(op==='×'){value=a*b;expression=`${a} × ${b}`;key=`mul:${Math.min(a,b)}:${Math.max(a,b)}`}
+ else{if(b===1&&max>=2)b=2;value=a;expression=`${a*b} ÷ ${b}`;key=`div:${a}:${b}`}
+ return {value,expression,key};
+}
+function chooseVariedProblem(op,tier){
+ // Prefer genuinely unseen equations. If the configured range is exhausted,
+ // use the least recently shown question instead of looping indefinitely.
+ let best=null,bestRank=-Infinity;
+ const indexes=new Map(recentQuestions.map((key,i)=>[key,i]));
+ const seenThisBatch=new Set();
+ for(let attempt=0;attempt<CANDIDATES_PER_QUESTION;attempt++){
+  const candidate=makeProblem(op,tier);
+  if(seenThisBatch.has(candidate.key))continue;
+  seenThisBatch.add(candidate.key);
+  const index=indexes.get(candidate.key);
+  // Unseen keys are strictly preferred; for seen ones, oldest wins.
+  const rank=index===undefined?QUESTION_MEMORY_LIMIT+1:recentQuestions.length-1-index;
+  const tieBreak=Math.random()*0.5;
+  if(rank+tieBreak>bestRank){best=candidate;bestRank=rank+tieBreak}
+  // Stop early once we find a genuinely new item: avoids delaying quick answers.
+  if(index===undefined&&attempt>=7)break;
  }
- return {value,expression};
+ return best||makeProblem(op,tier);
 }
 function nextQuestion(){
- const op=pickOperation(),tier=pickDifficulty();let candidate;
- // Avoid displaying the same equation again within the last eight questions when possible.
- for(let attempt=0;attempt<20;attempt++){candidate=makeProblem(op,tier);if(!recentExpressions.includes(candidate.expression))break}
- answer=candidate.value;lastExpression=candidate.expression;
- recentExpressions.push(lastExpression);if(recentExpressions.length>8)recentExpressions.shift();
+ const op=pickOperation(),tier=pickDifficulty();const candidate=chooseVariedProblem(op,tier);
+ answer=candidate.value;
+ rememberQuestion(candidate.key);
  faced++;const q=$('question');q.textContent=candidate.expression;q.classList.remove('enter');
  if(!motionReduced.matches){void q.offsetWidth;q.classList.add('enter')}
  questionStart=performance.now();
@@ -138,7 +172,7 @@ function nextQuestion(){
 function updateClock(){if(state!=='playing')return;const remaining=Math.max(0,endAt-performance.now());const seconds=Math.ceil(remaining/1000);if(seconds!==previousTime){$('timer').textContent=String(seconds);previousTime=seconds}$('timerWrap').classList.toggle('urgent',remaining<=10000);if(motionReduced.matches)$('timerProgress').style.strokeDashoffset=String(CIRCUMFERENCE*(1-remaining/(durationSeconds*1000)));if(remaining<=0)finish()}
 function animateProgress(){if(state!=='playing'||motionReduced.matches)return;const remaining=Math.max(0,endAt-performance.now());$('timerProgress').style.strokeDashoffset=String(CIRCUMFERENCE*(1-remaining/(durationSeconds*1000)));if(remaining>0)progressFrame=requestAnimationFrame(animateProgress)}
 function stopClock(){if(scoreAnimation!==null){cancelAnimationFrame(scoreAnimation);scoreAnimation=null}if(clockInterval!==null){clearInterval(clockInterval);clockInterval=null}if(progressFrame!==null){cancelAnimationFrame(progressFrame);progressFrame=null}}
-function startGame(){const error=validate(settings);if(error){openSettings();$('settingsError').textContent=error;return}stopClock();state='playing';score=0;solved=0;faced=0;speeds={fast:0,quick:0,normal:0,slow:0};durationSeconds=settings.duration;previousTime=-1;operationDeck=[];difficultyDeck=[];recentExpressions=[];lastExpression='';$('liveScore').textContent='0';$('liveSolved').textContent='0';$('answer').value='';$('answer').classList.remove('correct');$('timerProgress').style.strokeDasharray=String(CIRCUMFERENCE);$('timerProgress').style.strokeDashoffset='0';$('timerWrap').classList.remove('urgent');show('home',false);show('game',true);show('resultsOverlay',false);show('settingsOverlay',false);$('settingsOpen').hidden=true;nextQuestion();endAt=performance.now()+durationSeconds*1000;updateClock();clockInterval=setInterval(updateClock,100);if(!motionReduced.matches)progressFrame=requestAnimationFrame(animateProgress);safeFocus($('answer'))}
+function startGame(){const error=validate(settings);if(error){openSettings();$('settingsError').textContent=error;return}stopClock();state='playing';score=0;solved=0;faced=0;speeds={fast:0,quick:0,normal:0,slow:0};durationSeconds=settings.duration;previousTime=-1;operationDeck=[];difficultyDeck=[];$('liveScore').textContent='0';$('liveSolved').textContent='0';$('answer').value='';$('answer').classList.remove('correct');$('timerProgress').style.strokeDasharray=String(CIRCUMFERENCE);$('timerProgress').style.strokeDashoffset='0';$('timerWrap').classList.remove('urgent');show('home',false);show('game',true);show('resultsOverlay',false);show('settingsOverlay',false);$('settingsOpen').hidden=true;nextQuestion();endAt=performance.now()+durationSeconds*1000;updateClock();clockInterval=setInterval(updateClock,100);if(!motionReduced.matches)progressFrame=requestAnimationFrame(animateProgress);safeFocus($('answer'))}
 function points(t){return t<3?8:t<5?4:t<=7?2:1}
 let scoreAnimation=null;function updateScore(previous,next){if(scoreAnimation!==null)cancelAnimationFrame(scoreAnimation);if(motionReduced.matches){$('liveScore').textContent=String(next);return}const start=performance.now();function frame(now){if(state!=='playing')return;const f=Math.min(1,(now-start)/150);$('liveScore').textContent=String(Math.round(previous+(next-previous)*f));if(f<1)scoreAnimation=requestAnimationFrame(frame);else scoreAnimation=null}scoreAnimation=requestAnimationFrame(frame)}
 $('answer').addEventListener('input',()=>{if(state!=='playing')return;if(performance.now()>=endAt){finish();return}const input=$('answer');const raw=input.value.trim();if(!raw||!/^[-−]?\d+$/.test(raw))return;const value=Number(raw.replace('−','-'));if(value!==answer)return;const t=(performance.now()-questionStart)/1000;const oldScore=score;score+=points(t);solved++;if(t<3)speeds.fast++;else if(t<5)speeds.quick++;else if(t<=7)speeds.normal++;else speeds.slow++;updateScore(oldScore,score);$('liveSolved').textContent=String(solved);haptic();input.value='';input.classList.remove('correct');if(!motionReduced.matches){void input.offsetWidth;input.classList.add('correct')}nextQuestion();safeFocus(input)});
@@ -150,7 +184,45 @@ $('shareResult').addEventListener('click',async()=>{const txt=`Arithmetic Pro �
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('settingsOverlay').hidden)closeSettings();else if($('historyPanel').classList.contains('open'))closeHistory()}});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&state==='playing')updateClock()});
 loadSettings();renderHistory();
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+// Offline readiness is verified against the *active service worker cache*, not navigator.onLine.
+const offlineButton=$('offlineStatus');
+const offlineText=$('offlineText');
+let offlineCheckSerial=0;
+function setOfflineStatus(kind,message){offlineButton.dataset.state=kind;offlineText.textContent=message;offlineButton.title=message+' · Tap to check again'}
+async function checkOfflineReadiness(tryRepair=false){
+ const serial=++offlineCheckSerial;
+ if(!('serviceWorker'in navigator)||!('caches'in window)){
+  setOfflineStatus('missing','Offline mode unavailable');return;
+ }
+ setOfflineStatus('checking',tryRepair?'Preparing offline files…':'Checking offline…');
+ try{
+  const registration=await navigator.serviceWorker.getRegistration('./');
+  const worker=registration?.active;
+  if(!worker){if(serial===offlineCheckSerial)setOfflineStatus('missing',navigator.onLine?'Preparing offline mode · tap to retry':'Connect once to prepare offline mode');return}
+  const status=await new Promise((resolve,reject)=>{
+   const channel=new MessageChannel();
+   const timeout=setTimeout(()=>{channel.port1.close();reject(new Error('Offline check timed out'))},6000);
+   channel.port1.onmessage=event=>{clearTimeout(timeout);channel.port1.close();resolve(event.data)};
+   try{worker.postMessage({type:tryRepair&&navigator.onLine?'CACHE_OFFLINE_FILES':'CHECK_OFFLINE_FILES'},[channel.port2])}catch(error){clearTimeout(timeout);channel.port1.close();reject(error)}
+  });
+  if(serial!==offlineCheckSerial)return;
+  if(status?.ready===true)setOfflineStatus('ready',navigator.onLine?'Ready offline ✓':'Offline ready ✓');
+  else setOfflineStatus('missing',navigator.onLine?'Offline files incomplete · tap to retry':'Connect to finish offline setup');
+ }catch(error){if(serial===offlineCheckSerial)setOfflineStatus('missing',navigator.onLine?'Offline check failed · tap to retry':'Offline readiness not verified')}
+}
+offlineButton.addEventListener('click',()=>checkOfflineReadiness(true));
+window.addEventListener('online',()=>checkOfflineReadiness(true));
+window.addEventListener('offline',()=>checkOfflineReadiness(false));
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkOfflineReadiness(false)});
+if('serviceWorker'in navigator){
+ navigator.serviceWorker.addEventListener('controllerchange',()=>checkOfflineReadiness(false));
+ window.addEventListener('load',async()=>{
+  try{const registration=await navigator.serviceWorker.register('./sw.js');
+   if(registration.installing)registration.installing.addEventListener('statechange',()=>{if(registration.active)checkOfflineReadiness(false)});
+   await checkOfflineReadiness(true);
+  }catch{setOfflineStatus('missing','Connect once to prepare offline mode')}
+ });
+}else setOfflineStatus('missing','Offline mode unavailable');
 </script>
 </body>
 </html>
